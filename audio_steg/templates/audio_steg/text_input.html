@@ -1,0 +1,26 @@
+{% extends "audio_steg/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="page-header">
+        <h1 class="roboto">Text Steganography</h1>
+</div>
+<br><br>
+<form method="POST">
+        {% csrf_token %}
+        <h5>Instructions: </h5>
+        <small>Select the mode. In decrypt mode, enter <b>any single character</b> at the end of the string for the form to handle multiple whitespace submission.</small>
+        <br>
+        <br>
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Encrypt!</button>        
+</form>
+{% if result != NULL %}
+<div class="jumbotron">
+        <h5>Result:</h5>
+        <p class="text-result"><pre><mark>{{ result }}</mark></pre></p>
+</div>
+
+
+{% endif %}
+{% endblock content %}

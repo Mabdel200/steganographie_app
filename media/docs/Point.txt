@@ -1,0 +1,12 @@
+RAPPORT DU TRAVAIL SUR LE SYSTEME STEGANO
+Analyse
+- Cahier de charge Ok
+Implementation
+-Interface utilisateur Ok
+-Fonction de cryptage steganographique Ok
+ (On peut dissimuler n'importe quel fichier dans un autre et generer par la suite un fichier de sortie)
+-Fonction de decryptage Pas Ok
+-Uniformiser le projet avec Django pas OK 
+-Controles sur la taille du fichier Pas Ok
+(Si un fichier source >fichier destination cela peut 
+degrader la qualitee du fichier )	

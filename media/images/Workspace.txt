@@ -1,0 +1,13 @@
+1. TD M.Douwe Continuer
+2. TD M.AWE 
+3. TPE IOT
+4. COURS BDA
+================
+1. Revision Maida 
+2. Revision 5eme Hizb
+3. Sadaka
+==================
+1. Projet Gestion Notes & Bulletins
+	a. Etude de l'existant ok
+	b. Modelisations
+	c. Template Dashio / autres integrer par 	

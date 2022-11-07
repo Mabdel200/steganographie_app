@@ -1,0 +1,27 @@
+{% extends "audio_steg/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="page-header">
+    <h1 class="roboto">Audio Steganography</h1>
+</div>
+<br><br>
+<form method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-primary">Go!</button>        
+</form>
+{% if result != NULL %}
+<div class="jumbotron">
+        <h5>Result:</h5>
+        
+        <p class="text-result">Notes: {{ result.notes }}</p>
+        <small>This is the music note pattern for the encrypted audio file. The music should be playing right now.</small>
+        <br><br>
+        <p class="text-result">Key: {{ result.octalval }}</p>
+        <small>This is the key for the shared key encryption</small>
+</div>
+
+
+{% endif %}
+{% endblock content %}

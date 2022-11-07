@@ -1,0 +1,142 @@
+{% load static  %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% if title %}
+        <title>StegApp - {{ title }}</title>
+    {% else %}
+        <title>Stegano web</title>
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'crypto_blog/favicon.png' %}"/>    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'audio_steg/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
+
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary bg-gradient fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4 roboto" href="/welcome"><b>Steganographie app</b></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-item nav-link" href="/about">A propos </a>
+<!--                        {#%  if user.is_authenticated %#}-->
+<!--                            <a class="nav-item nav-link" href="/text">document</a>-->
+<!--                            <a class="nav-item nav-link" href="/image">Image</a>-->
+<!--                            <a class="nav-item nav-link" href="/audio">Audio</a>-->
+<!--                            <a class="nav-item nav-link" href="/history">History</a>-->
+<!--                        {#% endif %#}-->
+                        </div>
+                        <!-- Navbar Right Side -->
+                        <div class="navbar-nav">
+<!--                        {# if user.is_authenticated #}-->
+<!--                            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>-->
+<!--                        {# else #}-->
+<!--                            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>-->
+<!--                            <a class="nav-item nav-link" href="{% url 'signup' %}">Sign Up</a>-->
+<!--                        {# endif #}-->
+                        </div>
+                    </div>
+            </div>
+        </nav>
+    </header>
+
+    <main 
+        role="main" 
+        class="container" 
+        id="content-block"
+        >   
+            <!-- Flash Messages-->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %} {% endblock %}
+    <!-- 1. Jumbotron class    -->
+      <div class="jumbotron">
+        <h1 class="roboto">Bienvenue, dans le service stégano-web du groupe 1.</h1>
+        <p>Grace a ce service vous pouvez sécuriser vos informations plus facilement. C'est parti!</p>
+
+          <form method="post" enctype="multipart/form-data" >
+             {% csrf_token %}
+
+              <fieldset style="margin-left:25%" class="border p-2 col-6 col-md-6">
+                  <legend class="w-auto">Information</legend>
+
+                   <div class="form-group  ">
+                        <label >Quelle est la nature de votre document ?</label>
+                          {{form.type_file_id}}
+                   </div>
+                   <div class="form-group" >
+                        <label >Transferer votre fichier</label>
+                             {{ form.name}}
+                   </div>
+              </fieldset>
+
+              <br>
+
+            <div class="send" style="margin-left:67%" >
+                <button type="submit" class="btn btn-success" name="crypter">Crypter</button>
+            </div>
+
+          </form>
+
+
+            <br>
+
+              {% if valEncode %}
+
+                  <div class="card col-6" >
+                      <p style="">
+
+                           <button class="btn btn primary">
+                                 <a href="/media/out/image.jpeg"  download="Acme Documentation (ver. 2.0.1).txt"><b>Telecharger le fichier</b>
+                                     <br>
+                                        <img src="/media/design/zip-7040223__340.png" width="100px" height="100px" class="img-thumbnail" alt="image" />
+                                 </a>
+                           </button>
+
+                             {% if choice == 2 %}
+                                       <button class="btn btn primary">
+                                             <a href="/media/out/son.mp3"  download="Acme Documentation (ver. 2.0.1).txt">Telecharger le fichier</a>
+                                       </button>
+                             {% endif %}
+                           {% if choice == 3 %}
+                                       <button class="btn btn primary">
+                                             <a href="/media/out/video.mp4"  download="Acme Documentation (ver. 2.0.1).txt">Telecharger le fichier</a>
+                                       </button>
+                             {% endif %}
+                                    <a href="/decrypt"><b> <i>Pour decrypter cliquer ici !!</i></b>
+
+                                    </a>
+                      </p>
+                 </div>
+             {% endif %}
+
+    </div>
+
+
+
+    </main>
+
+    <!-- Bootstrap JS-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
