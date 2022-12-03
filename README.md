@@ -1,7 +1,7 @@
-# steganographie_app
+# steganographie_app with python 
 It is a application steganographic , to crypt data and decrypt
 
-# Il faudra installer tous les packages avant de demarer le serveur
-# Installer la base de donnees mysql et clientserver 
-# Appliquer les migrations
-#lancer python manage.py runserver
+# First of all, make sure to install all packages and dependancies in the env
+# Import schema db, and install extension mysql in your editor  
+# After apply all migrations 
+# Lunch with python manage.py runserver.
